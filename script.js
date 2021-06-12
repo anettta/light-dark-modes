@@ -8,12 +8,10 @@ const textBox = document.getElementById("text-box");
 const DARK_THEME = "dark";
 const LIGHT_THEME = "light";
 
-// Dark or Light Images
-function imageMode(color) {
-  image1.src = `img/undraw_proud_coder_${color}.svg`;
-  image2.src = `img/undraw_feeling_proud_${color}.svg`;
-  image3.src = `img/undraw_conceptual_idea_${color}.svg`;
-}
+const mode = {
+  DARK: 0,
+  LIGHT: 1,
+};
 
 function toggleDarkLightMode(isDark) {
   nav.style.backgroundColor = isDark
@@ -26,7 +24,14 @@ function toggleDarkLightMode(isDark) {
   isDark
     ? toggleIcon.children[1].classList.replace("fa-sun", "fa-moon")
     : toggleIcon.children[1].classList.replace("fa-moon", "fa-sun");
-  isdark ? imageMode("dark") : imageMode("light");
+  isDark ? imageMode("dark") : imageMode("light");
+}
+
+// Dark or Light Images
+function imageMode(color) {
+  image1.src = `img/undraw_proud_coder_${color}.svg`;
+  image2.src = `img/undraw_feeling_proud_${color}.svg`;
+  image3.src = `img/undraw_conceptual_idea_${color}.svg`;
 }
 
 // // Dark Mode
@@ -69,6 +74,6 @@ if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
   if (currentTheme === "dark") {
     toggleSwitch.checked = true;
-    toggleDarkLightMode(true);
+    toggleDarkLightMode(mode.DARK);
   }
 }
